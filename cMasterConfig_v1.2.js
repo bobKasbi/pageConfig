@@ -44,36 +44,26 @@
         event = event || window.event;
         //IE uses srcElement as the target
         var target = event.target || event.srcElement;
-        
-        //alert( 'TEST: ' + this.className );
-        
+
         if( this.className === 'logo-and-co' ){
             switch( target.className ){
                 case "help-me":
-                   // alert( 'CLICKE ELEMANT: ' + target.className);
-					$('#outer-wrapper-help').popup('show');
+			$('#outer-wrapper-help').popup('show');
                     break;
-                case "history-back":
-					//alert( 'CLICKE ELEMANT: ' + target.className);                   
-				   $('#outer-wrapper-leavepage').popup('show');
+                case "history-back":                  
+			$('#outer-wrapper-leavepage').popup('show');
                     break;
-                /*case "get-global-settings":
-                    alert( 'CLICKE ELEMANT: ' + target.className);
-                    break;*/
                 case "resP":
-                   // alert( 'CLICKE ELEMANT: ' + target.className);
-					showMobile();
-                    break;
+			showMobile();
+                break;
                 case "show-settings":
-                    //alert( 'CLICKE ELEMANT: ' + target.className);
-					break;
+		break;
             }
         }
         
         if( this.className === 'selected-temp popup_content' ){
             switch( target.className ){
             case "btn-temp-preview-close":
-                //alert( 'CLICKE ELEMANT: ' + target.className);
                 $('.selected-temp').popup('hide');
                 break;
             }
@@ -179,8 +169,8 @@
     
 
 	function getGlobalSettings(){
-		/**
-         * Assigning values from CMaSter Template to the variables
+	/**
+        * Assigning values from CMaSter Template to the variables
         */
 		
         mainTempBgColor = $('.main-td-wrapper').attr( 'bgcolor');
@@ -191,7 +181,7 @@
         btnTxtColor = hexc($('.am-btn-txt').css('color'));
         btnBgColor = $('.am-btn').attr( 'bgcolor');
         gapLineColor = $('.am-trennlinie').css( 'border-bottom-color');
-		tlBgColor = $('.borderB').css( 'border-bottom-color');
+	tlBgColor = $('.borderB').css( 'border-bottom-color');
 		
 		
         $.each($('.result').find('table[title]'), function(){
@@ -209,17 +199,10 @@
             $('input[name=Headline_Font_Color]').val( hexc( hdln_01_Color ) );
             $('input[name=Subheadline_Font_Color]').val( hexc( subHdln_01_Color ) );
             $('input[name=Headline_2_Font_Color]').val( hexc( hdln_02_Color ) );
-            $('input[name=Subheadline_2_Text_Color]').val( hexc( subHdln_02_Color ) );
-            $('input[name=Text_Font_Color]').val( txtColor );
-            $('input[name=Button_Text_Font_Color]').val( btnTxtColor );
-            $('input[name=Button_Background_Color]').val( btnBgColor );
-            $('input[name=Separator_Color]').val(hexc( gapLineColor) );
-            $('input[name=Separator_Color]').val(hexc( tlBgColor) ); 
-			
+            $('input[name=Subheadline_2_Text_Color]').val( hexc( subHdln_02_Color ) );	
 			
             if ( status === "error" ) {
                 var msg = "Sorry but there was an error: ";
-                //alert( msg + xhr.status + " " + xhr.statusText );
             }
         });	
 	}
@@ -317,18 +300,10 @@
                         }
                         objJson[this.name].push(this.value || '');
                     } else {
-                        //var tt = this.name;
-						
-						/*if (this.value === 'false' || this.value === 'true'){
-                        alert('NAME: ' + this.name + '------Value: ' + this.value);
-						}*/
-						//alert('Value: ' + this.value);
                         if(this.value !== 'true' && this.value !== 'false'){
-                            //alert('NONE OF THEM');
                             objJson['template']['style'][this.name] = this.name;
                             objJson['template']['style'][this.name] = this.value;
                         }else if(this.value === 'false'){
-                            //alert('It\'s false');
                             var paragraph = {
                                 "name": this.name,
                                 "active": false,
@@ -336,7 +311,6 @@
                             };
                             objJson['template'].paragraphs.push(paragraph);
                         }else if(this.value === 'true'){
-                            //alert('it\'s true');
                             var paragraph = {
                                 "name": this.name,
                                 "active": true,
@@ -353,8 +327,6 @@
             $('.my-parts-wrapper').html('');
             
             $.each( $('.control-parts').find('input[type=checkbox]'), function(){
-               // alert('NAME: ' + $(this).attr('name') + ': ' +  $(this).is(':checked') );
-                
                 $('<input>').attr({
                     type: 'hidden',
                     name: $(this).attr('name'),
@@ -366,21 +338,19 @@
     }).then(function() {
              
         $('#globalSettings, .block-details').delegate('input[type=text]','focusout',function(e){
-            //alert( $(this).next('input[type=text]').attr('name') );
             $(this).next('input[type=text]').css({
                 'background-color': $(this).val()
             });
         });
         
 		function saveGlobalSettings(GlobalSettingsForm){
-			
 			var GlobalSettingsForm = GlobalSettingsForm;
 			$.each( GlobalSettingsForm.find(':input:not([readonly])'), function(){
                 var elInput = $(this);
                 switch (elInput.attr('name')) {
                     case 'Newsletter_Background_Color':
                         $('.main-td-wrapper').css({ 'background-color': $(this).val() });
-                        break;
+                    break;
                         
                     case 'Paragraph_Background_Color':
                         var inpEl = $(this);
@@ -388,17 +358,17 @@
                             var partEl = $(this);
                             partEl.css('background-color', inpEl.val() );
                         });
-						$('.header-part-bgcolor').css({ 'background-color': $(this).val() });
-                        break;
+			$('.header-part-bgcolor').css({ 'background-color': $(this).val() });
+                    break;
 					
-            // Start Headline Formating
+                    //Start Headline Formating
                     case 'Headline_Font':
                         $('.am-hdln-01').css({'font-family': $(this).val() });
-                        break;
+                    break;
                         
                     case 'Headline_Font_Size':
                         $('.am-hdln-01').css({'font-size': $(this).val() + 'px' });
-                        break;
+                    break;
                         
                     case 'Headline_Font_Style':
                         if( $(this).val() === 'italic bold' ){
@@ -406,109 +376,20 @@
                         }else{
                             $('.am-hdln-01').css({'font-style': $(this).val() });
                         }
-                        break;
+                    break;
                         
                     case 'Headline_Font_Color':
                         $('.am-hdln-01').css({'color': $(this).val() });
-                        break;
-                    
-            // Start Sub Headline Formating
-                    case 'Subheadline_Font':
-                        $('.am-sub-hdln-01').css({'font-family': $(this).val() });
-                        break;
-                        
-                    case 'Subheadline_Font_Size':
-                        $('.am-sub-hdln-01').css({'font-size': $(this).val() + 'px' });
-                        break;
-                        
-                    case 'Subheadline_Font_Style':
-                        if( $(this).val() === 'italic bold' ){
-                            $('.am-sub-hdln-01').css({'font-style': 'italic', 'font-weight':'bold' });
-                        }else{
-                            $('.am-sub-hdln-01').css({'font-style': $(this).val() });
-                        }
-                        break;
-                        
-                    case 'Subheadline_Font_Color':
-                        $('.am-sub-hdln-01').css({'color': $(this).val() });
-                        break;
-                    
-            // Start Headline 2 Formating
-                    case 'Headline_2_Font':
-                        $('.am-hdln-02').css({'font-family': $(this).val() });
-                        break;
-                        
-                    case 'Headline_2_Font_Size':
-                        $('.am-hdln-02').css({'font-size': $(this).val() + 'px' });
-                        break;
-                        
-                    case 'Headline_2_Font_Style':
-                        if( $(this).val() === 'italic bold' ){
-                            $('.am-hdln-02').css({'font-style': 'italic', 'font-weight':'bold' });
-                        }else{
-                            $('.am-hdln-02').css({'font-style': $(this).val() });
-                        }
-                        break;
-                        
-                    case 'Headline_2_Font_Color':
-                        $('.am-hdln-02').css({'color': $(this).val() });
-                        break;
-                   
-            // Start Subeadline 2 Formating
-                    case 'Subheadline_2_Font':
-                        $('.am-sub-hdln-02').css({'font-family': $(this).val() });
-                        break;
-                        
-                    case 'Subheadline_2_Font_Size':
-                        $('.am-sub-hdln-02').css({'font-size': $(this).val() + 'px' });
-                        break;
-                        
-                    case 'Subheadline_2_Font_Style':
-                        if( $(this).val() === 'italic bold' ){
-                            $('.am-sub-hdln-02').css({'font-style': 'italic', 'font-weight':'bold' });
-                        }else{
-                            $('.am-sub-hdln-02').css({'font-style': $(this).val() });
-                        }
-                        break;
-                        
-                    case 'Subheadline_2_Text_Color':
-                        $('.am-sub-hdln-02').css({'color': $(this).val() });
-                        break;
-						
-            // Start Text Formating
-                    case 'Text_Font':
-                        $('.am-txt-main').css({'font-family': $(this).val() });
-                        break;
-                        
-                    case 'Text_Font_Size':
-                        $('.am-txt-main').css({'font-size': $(this).val() + 'px' });
-                        break;
-                        
-                    case 'Text_Font_Style':
-                        if( $(this).val() === 'italic bold' ){
-                            $('.am-txt-main').css({'font-style': 'italic', 'font-weight':'bold' });
-                        }else{
-                            $('.am-txt-main').css({'font-style': $(this).val() });
-                        }
-                        break;
-                        
-                    case 'Text_Font_Color':
-                        $('.am-txt-main').css({'color': $(this).val() });
-                        break;
-     
-            
-					
+                    break;
+         			
                 }
             });
-		}
+	}
 		
         $('.btn-store-global-settings').click(function(e){
             e.preventDefault();
-			saveGlobalSettings($('.global-settings-inner-form'));
-            //delete jsonData.Paragraphs;
-            //jsonData = JSON.stringify( $('#globalForm').find(':input:not([readonly])').serializeFormJSON());  //$(this).serializeFormJSON();
+	    saveGlobalSettings($('.global-settings-inner-form'));
             jsonData =  $('#globalForm').find(':input:not([readonly])').serializeFormJSON();  //$(this).serializeFormJSON();
-            //$('.myJson').html(jsonData);
             $('#globalSettings').popup('hide');
         });
         
@@ -517,18 +398,10 @@
         $('.btn-store-part-settings, .btn-preview-part').click(function(){
             
             var elTarget = $(this);
-        
-            //alert( elTarget.attr('class') );
-        
-            //alert( 'JSON DATA: ' + typeof jsonData );
             var inputPart;
             var editablePart = $('input[name=paragraph]').val();
             $.each( $('form[name=part-form]').find(':input:not([readonly])'),function(){
-                //alert( $(this).attr('name') );
                 inputPart = $(this);
-
-                //alert('NAME: ' + inputPart.attr('name'));
-
                 if(editablePart === 'Preheader_and_Header'){
                     switch(inputPart.attr('name')) {
                         case 'Snippet_Text_Font_Color': $('.part-text-snippet').css({'color': $(this).val() });
@@ -552,12 +425,12 @@
                             break;
                         case 'Navi_Text_Font_Color': $('.part-navigation-elem').css({ 'color': $(this).val() });
                             break;
-						 case 'Navi_Background_Color': $('.part-bg-color-navigation').css({ 'background-color': $(this).val() });
+			case 'Navi_Background_Color': $('.part-bg-color-navigation').css({ 'background-color': $(this).val() });
                             break;
                     }
                 }
 				
-				if(editablePart === 'Headline_and_Subheadline'){
+		if(editablePart === 'Headline_and_Subheadline'){
                     switch(inputPart.attr('name')) {
                         case 'Background_Color': $('.hdln_subhdln').css({'background-color': $(this).val()});
                             break;
@@ -576,11 +449,11 @@
                             break;
                         case 'TOC_Headline_Font_Color': $('.part-hdln-text-toc').css({ 'color': $(this).val() });
                             break;
-						case 'TOC_Text_Font_Size': $('.TOC_Text_Font_Size').css({ 'font-size': $(this).val() });
+			case 'TOC_Text_Font_Size': $('.TOC_Text_Font_Size').css({ 'font-size': $(this).val() });
                             break;
                         case 'TOC_Text_Font_Color': $('.TOC_Text_Font_Color').css({ 'color': $(this).val() });
                             break;
-						case 'TOC_Background_Color': $('.TOC_Background_Color').css({'background-color': $(this).val()});
+			case 'TOC_Background_Color': $('.TOC_Background_Color').css({'background-color': $(this).val()});
                             break;	
                     }
                 }
@@ -588,15 +461,15 @@
                 
                 if(editablePart === 'Editorial_and_Ad'){
                     switch(inputPart.attr('name')) {
-						 case 'Salutation_Text_Font_Size': $('.part-text-anrede-ad').css({'font-size': $(this).val() });
+			case 'Salutation_Text_Font_Size': $('.part-text-anrede-ad').css({'font-size': $(this).val() });
                             break;
                         case 'Salutation_Text_Font_Color': $('.part-text-anrede-ad').css({'color': $(this).val() });
                             break;
-						case 'Ad_Headline_Font_Size': $('.part-hdln-text-ad').css({ 'font-size': $(this).val() });
+			case 'Ad_Headline_Font_Size': $('.part-hdln-text-ad').css({ 'font-size': $(this).val() });
                             break;
                         case 'Ad_Headline_Font_Color': $('.part-hdln-text-ad').css({ 'color': $(this).val() });
                             break;
-						case 'Ad_Text_Font_Size': $('.Ad_Text_Font_Size').css({ 'font-size': $(this).val() });
+			case 'Ad_Text_Font_Size': $('.Ad_Text_Font_Size').css({ 'font-size': $(this).val() });
                             break;
                         case 'Ad_Text_Font_Color_odd': $('.Ad_Text_uneven_Color').css({'color': $(this).val() });
                             break;
@@ -655,20 +528,6 @@
                             break;
                     }
                 }
-                if(editablePart === '1_img_box_left_headline'){
-                    switch(inputPart.attr('name')) {
-                        case 'Background_Color': $('.part-bg-color-ONE-image-box-LEFT-hdln').css({'background-color': $(this).val() });
-                            break;
-                        case 'Head_Subheadline_2_Font_Color': $('.am-hdln-02').css({ 'color': $(this).val() });$('.am-sub-hdln-02').css({ 'color': $(this).val() });
-                            break;
-						case 'Text_Font_Color_Right': $('.am-txt-main-1-img-left-hdln').css({ 'color': $(this).val() });
-                            break;   
-						case 'Button_Text_Font_Color_Right': $('.am-btn-txt-1-img-left-hdln').css({ 'color': $(this).val() });
-                            break;		
-                        case 'Button_Background_Color_Right': $('.am-btn-1-img-left-hdln').css({ 'background-color': $(this).val() });
-                            break;
-                    }
-                }
                 
                 if(editablePart === 'Footer'){
                     switch(inputPart.attr('name')) {
@@ -703,18 +562,11 @@
             
             
             if( elTarget.attr('class') === 'btn-store-part-settings'){
-
                 ConvertFormToJSON( $('#part-form') );
-
                 console.log('partJSON Before last Merge: ' + partJsonData);
                 var el;
                 $.each(jsonData.template.paragraphs, function(i, v) {
-
-                    //alert('I: ' + i);
                     if (v.name === editablePart) {
-                        //alert('The NAME is: ' + v.name);
-
-                        //jsonData.template.paragraphs.style.push(partJsonData);
                         v.style = partJsonData;
                         el = true;
                         return false;
@@ -722,12 +574,8 @@
                     if (v.name !== editablePart) {
                         el = false;
                     }else{return false;};
-
-                    //alert( 'v.name === editablePart: ' + v.name === editablePart );
                 });
-
-                //alert( 'myEL ###########: ' + el);
-                //alert( 'EL: ' + el );
+		    
                 if(!el){
                     var paragraph = {
                         "name": editablePart,
@@ -735,16 +583,10 @@
                     };
                     jsonData.template.paragraphs.push(paragraph);
                 }
-                //jsonData.template.paragraphs.push(partJsonData);
                 console.log('jsonData After last Merge: ' + jsonData);
-
-
                 $('#my_popup').popup('hide');
-            
-            }
-            
+            }    
         });
-        
     })
 	
 	  .then(function(){
@@ -756,24 +598,14 @@
         **/
 
         $('.show-settings').on('click', function(){
-            
-            /*if( jsonData.template.length > 0 ){
-               alert('NOT EMPTY'); 
-            }else{
-                alert('EMPTY');
-            }*/
-            
             if( jsonData.template === undefined ){
-               //alert('EMPTY'); 
                $('#catch-error').popup('show');
                return false;
             }else{
-
                 var parts = $('.result').find('table[title]').length;
                 var ar = '';
                 $.each( $('.result').find('table[data-part-active=yes]'), function(){
                     ar += $(this).attr('title') + '<br/>' ;
-
                 });
 
                 output = '<ul style="clear:both; list-style-type:none; margin:0; padding:0; width:1000px; height:auto; min-height:700px;">'
@@ -782,7 +614,6 @@
                          + parts 
                          + '</span><br>' + ar + '</li><li style="clear:both; width:1000px; border-top:1px solid #fff;">&nbsp;</li>';
                 $.each(jsonData.template.style, function(k, v) {
-                    //alert('K: ' + v);
                     output  +='<li style="clear:both; float:left; width:300px; height:25px; font-size:15px; text-transform:capitalize;" class="json-first-li">' 
                             + k.replace(/_/g, ' ') 
                             + ': </li>'
@@ -794,22 +625,12 @@
                 output += '<li style="clear:both; width:990px; height:30px; padding:10px 0; font-family:Arial, Helvitica, sans-serif; font-size:20px; font-weight:bold; color:yellow; text-align:center;">Paragraphen Einstellungen:</li>';
 
                 $.each(jsonData.template.paragraphs, function( k, v) {
-                    //$.each(v.active, function(j, jVL){
-
                          var status = v.active;
-                         //alert('STATUS: ' + status);
-                    //});
-                    //if(v.aktive === 'true'){
                         $.each(v.style, function(i, vl){
-
-                            //alert('VL: ' + vl);
-
                             var b;
                             if(i === 'paragraph'){
-                                //alert('I: ' + i + ' VL: ' + vl );  
                                 b = "font-weight:bold; font-size:15px; text-decoration:underline;"; 
                             }else{ 
-                                //alert('just: ' + vl); 
                                 b = "font-weight:normal"; 
                             };
 
@@ -830,7 +651,6 @@
 
                 $('.show-global-setting-details').html(output);
                 jsonData = JSON.stringify(jsonData);
-                //alert('jsonData AFTER Stringify: ' + jsonData);
                 var output,
                 //res = jsonData,
                 //parts = $('.result').find('table[data-part-active=yes]').length,
@@ -872,7 +692,6 @@
                 Configurator: function(){
                     
                     var obj = this;
-
                     // Public method
                     obj.passConfig = function(){
                         
@@ -948,16 +767,13 @@
                 
                 $('.show-global-setting-details').html(output);
                 $('.showGlobalSettings').popup('show');
-                //alert( $('.myJson').html() );
 
             };
 
             $('.getXML').click(function(){
                 doJSON();
             });
-            
-            //var hm;
-                                                                                           
+		
             var Slider = function () {
                 this.initialize.apply(this, arguments);
             };
@@ -968,12 +784,7 @@
                     this.li = this.ul.children;
                     this.ul.style.width = (this.li[0].clientWidth * this.li.length) + 'px';
                     this.currentIndex = 0;
-                    //this.currentIndex = 1;
-
-                    
-                    //alert( 'currentIndex: ' + this.currentIndex );
-
-                      $('.slider-arrow-left>a>img').hide();
+                    $('.slider-arrow-left>a>img').hide();
 					
                     var num = this.currentIndex;
                     var a = num.toString();
@@ -1091,12 +902,10 @@
             });
         });
     };
-    
-    
+
     /** Beginn Help functions
      * 
      */ 
-        
     
     $formattedBody = '';
 
@@ -1117,7 +926,4 @@
 
 })(jQuery);
 
-//var forCmConf = $('.firstOptions').cMasterConfig();
 $('.wrapper-slide-radios, .main-elems').cMasterConfig();
-//$('.block-details').blockConfig();
-//var forColorPicker = $('.colpick').cMasterConfig().bar();
