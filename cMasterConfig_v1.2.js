@@ -1,4 +1,5 @@
 (function($) {
+    'use strict';
     sliders = [];
     window.jsonData = new Object();
     var partJsonData = new Object();
@@ -495,42 +496,7 @@
                         $('.am-txt-main').css({'color': $(this).val() });
                         break;
      
-            // Start Button Formating
-                    case 'Button_Text_Font':
-                        $('.am-btn-txt').css({'font-family': $(this).val() });
-                        break;
-                        
-                    case 'Button_Text_Font_Size':
-                        $('.am-btn-txt').css({'font-size': $(this).val() + 'px' });
-                        break;
-                        
-                    case 'Button_Text_Font_Style':
-                        if( $(this).val() === 'italic bold' ){
-                            $('.am-btn-txt').css({'font-style': 'italic', 'font-weight':'bold' });
-                        }else{
-                            $('.am-btn-txt').css({'font-style': $(this).val() });
-                        }
-                        break;
-                        
-                    case 'Button_Text_Font_Color':
-                        $('.am-btn-txt').css({'color': $(this).val() });
-                        break;	
-                    
-                    case 'Button_Background_Color':
-                        $('.am-btn').css({'background-color': $(this).val() });
-                        break;
-
-					case 'Separator_Color':
-                        $('.borderB').css({ 'border-bottom-color': $(this).val()});
-						$('.am-trennlinie').css({ 'border-bottom-color': $(this).val()});
-                        break;
-						
-                    /*
-                    case 'link_color_main':
-                        $('.am-btn-txt').css({'color': $(this).val() });
-                        $('.am-btn').css({'background-color': $('input[name=part_bg_color]').val() });
-                        break;	
-                    */
+            
 					
                 }
             });
